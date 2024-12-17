@@ -3,7 +3,7 @@ import { View, Text, TextInput, Button, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { auth, createUserWithEmailAndPassword } from '../backend/FirebaseConfig'
-import { validacaoFormularioUsuario, exibirMensagemValidacao } from '../util/Validacao';
+
 
 const CadastroScreen = () =>{
     const navegacao = useNavigation();
@@ -12,14 +12,11 @@ const CadastroScreen = () =>{
 
     const executarCadastro = async () => {
         try { 
-            let validacaoErro = validacaoFormularioUsuario(email, senha);
-            if ( validacaoErro.lenght > 0){ 
-                 exibirMensagemValidacao(validacaoErro);
-            } else {
-                await createUserWithEmailAndPassword(auth, email, senha);
-                Alert.alert("Cadastro realizado com sucesso!");
-                navegacao.navigate("Interna");
-            }
+
+            await createUserWithEmailAndPassword(auth, email, senha);
+            Alert.alert("Cadastro realizado com sucesso!");               
+            navegacao.navigate("Interna");
+            
         } catch(error) {
             Alert.alert("Erro", error.message);
         } 
