@@ -20,7 +20,7 @@ const CadastroScreen = () =>{
                 await createUserWithEmailAndPassword(auth, email, senha);
                 Alert.alert("Cadastro realizado com sucesso!");               
                 navegacao.navigate("Interna");
-                        }
+            }
 
         } catch(error) {
             Alert.alert("Erro", error.message);
